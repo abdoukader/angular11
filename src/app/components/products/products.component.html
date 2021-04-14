@@ -9,6 +9,9 @@
         <li>
             <button (click)="onGetAvailableProducts()" class="btn btn-sm btn-outline-info ml-2">Available</button>
         </li>
+        <li>
+            <button (click)="onNewProduct()" class="btn btn-sm btn-outline-info ml-2">New</button>
+        </li>
     </ul>
     <ul class="navbar navbar-nav ml-auto">
         <li>
@@ -47,6 +50,16 @@
                         <span *ngIf="p.selected">Unselect</span>
                         <span *ngIf="!p.selected">select</span>
 
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="onDelete(p)">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="onEdit(p)">
+                        <span class="fa fa-edit"></span>
                     </button>
                 </td>
             </tr>

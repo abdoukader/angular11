@@ -3,16 +3,16 @@
     {
       "id": 1,
       "name": "Computer",
-      "price": 4300,
+      "price": "2000",
       "quantity": 600,
       "selected": true,
       "available": true
     },
     {
       "id": 2,
-      "name": "Printers",
-      "price": 300,
-      "quantity": 100,
+      "name": "Tablette",
+      "price": 1200,
+      "quantity": 123,
       "selected": false,
       "available": true
     },
@@ -21,8 +21,16 @@
       "name": "Smartphone",
       "price": 1200,
       "quantity": 123,
-      "selected": false,
+      "selected": true,
       "available": true
+    },
+    {
+      "name": "pomme",
+      "price": "100",
+      "quantity": "10",
+      "selected": false,
+      "available": "true",
+      "id": 4
     }
   ]
 }
