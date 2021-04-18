@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Product } from 'src/app/model/product.model';
 import { ProductsService } from 'src/app/services/products.serice';
-import { AppDataState, DataStateEnum } from 'src/app/state/product.state';
+import { ActionEvent, AppDataState, DataStateEnum, ProductActionsTypes } from 'src/app/state/product.state';
 import { catchError, startWith } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { ProductAddComponent } from '../product-add/product-add.component';
+
 
 @Component({
   selector: 'app-products',
@@ -56,20 +56,22 @@ export class ProductsComponent implements OnInit {
     );
 
   }
-  onSearch(dataForm: any){
 
+  onSearch(dataForm: any){
     this.products$ = this.productsService.searchProducts(dataForm.keyword).pipe(
       map(data=>({dataState: DataStateEnum.LOADED,data:data})),
       startWith({dataState:DataStateEnum.LOADING}),
       catchError(err=>of({dataState:DataStateEnum.ERROR, errorMessage:err.message}))
     );
   }
+
   onSelect(p:Product){
     this.productsService.select(p)
     .subscribe(data=>{
       p.selected=data.selected;
     })
   }
+
   onDelete(p:Product){
     let v=confirm("Etes vous sure?");
     if(v==true)
@@ -85,5 +87,18 @@ export class ProductsComponent implements OnInit {
   onEdit(p:Product){
     this.router.navigateByUrl("/editProduct/"+p.id);
   }
+  onActionEvent($event:ActionEvent){
+    switch($event.type){
+      case ProductActionsTypes.GET_ALL_PRODUCTS: this.onGetAllProducts();break;
+      case ProductActionsTypes.GET_SELECTED_PRODUCTS: this.onGetSelectedProducts();break;
+      case ProductActionsTypes.GET_AVAILABLE_PRODUCTS: this.onGetAvailableProducts();break;
+      case ProductActionsTypes.SEARCH_PRODUCTS:this.onSearch($event.payload);break;
+      case ProductActionsTypes.New_PRODUCTS: this.onNewProduct();break;
+      case ProductActionsTypes.SELECT_PRODUCTS:this.onSelect($event.payload);break;
+      case ProductActionsTypes.DELETE_PRODUCTS:this.onDelete($event.payload);break;
+      case ProductActionsTypes.EDIT_PRODUCTS:this.onEdit($event.payload);break;
+    }
+  }
 
 }
+ 

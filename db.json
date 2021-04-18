@@ -13,22 +13,22 @@
       "name": "Tablette",
       "price": 1200,
       "quantity": 123,
-      "selected": false,
+      "selected": true,
       "available": true
     },
     {
       "id": 3,
       "name": "Smartphone",
-      "price": 1200,
+      "price": "120",
       "quantity": 123,
-      "selected": true,
+      "selected": false,
       "available": true
     },
     {
-      "name": "pomme",
-      "price": "100",
-      "quantity": "10",
-      "selected": false,
+      "name": "ndogou",
+      "price": "1800",
+      "quantity": "2",
+      "selected": "true",
       "available": "true",
       "id": 4
     }

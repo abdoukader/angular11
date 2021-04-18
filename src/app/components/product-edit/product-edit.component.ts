@@ -15,7 +15,7 @@ export class ProductEditComponent implements OnInit {
   submitted:boolean=false;
 
   constructor(private activatedRoute:ActivatedRoute, private productsService:ProductsService, private fb:FormBuilder) {
-    this.productId=activatedRoute.snapshot.params.id;
+    this.productId=this.activatedRoute.snapshot.params.id;
    }
 
   ngOnInit(): void {
